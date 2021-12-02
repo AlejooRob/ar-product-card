@@ -5,13 +5,13 @@ import { ProductContextProps, Product, onChangeArgs, InitialValues, ProductCardH
 import styles from '../styles/styles.module.css';
 
 export interface Props {
-    product: Product;
     children: (args: ProductCardHandlers) => JSX.Element;
     className?: string;
-    style?: React.CSSProperties;
-    onChange?: ( args: onChangeArgs ) => void;
-    value?:number;
     initialValues?: InitialValues;
+    onChange?: ( args: onChangeArgs ) => void;
+    product: Product;
+    style?: React.CSSProperties;
+    value?:number;
 }
 
 export const ProductContext =  createContext({} as ProductContextProps)
@@ -25,9 +25,10 @@ export const ProductCard = ({ children, product, className, style, onChange, val
     return (
         < Provider value= {{
             counter,
-            increaseBy,
             maxCount,
-            product
+            product,
+
+            increaseBy
         }} >
             <div 
                 className={`${ styles.productCard } ${ className }`}
